@@ -16,8 +16,8 @@ from keras.optimizers import Adam
 from keras.regularizers import l1, l2
 from keras.utils.visualize_util import plot
 
-from npi.add.config import FIELD_ROW, FIELD_DEPTH, PROGRAM_VEC_SIZE, PROGRAM_KEY_VEC_SIZE, FIELD_WIDTH
-from npi.add.lib import BubblesortProgramSet, BubblesortEnv, run_npi, create_questions, BubblesortTeacher
+from npi.bubble.config import FIELD_ROW, FIELD_DEPTH, PROGRAM_VEC_SIZE, PROGRAM_KEY_VEC_SIZE, FIELD_WIDTH
+from npi.bubble.lib import BubblesortProgramSet, BubblesortEnv, run_npi, create_questions, BubblesortTeacher
 from npi.core import NPIStep, Program, IntegerArguments, StepOutput, RuntimeSystem, PG_RETURN, StepInOut, StepInput, \
     to_one_hot_array
 from npi.terminal_core import TerminalNPIRunner
