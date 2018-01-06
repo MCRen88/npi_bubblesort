@@ -10,6 +10,6 @@ cd $THIS_DIR
 mkdir -p "$DATA_DIR"
 
 rm -f "$LOG"
-echo python3 npi/add/create_training_data.py "$OUTPUT_FILE" 1000 "$LOG"
-python3 npi/add/create_training_data.py "$OUTPUT_FILE" 1000 "$LOG"
+echo python3 npi/bubble/create_training_data.py "$OUTPUT_FILE" 1000 "$LOG"
+python3 npi/bubble/create_training_data.py "$OUTPUT_FILE" 1000 "$LOG"
 
