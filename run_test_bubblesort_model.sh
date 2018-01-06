@@ -10,5 +10,5 @@ cd "$THIS_DIR"
 
 mkdir -p "$DATA_DIR"
 
-echo python3 npi/add/test_model.py "$MODEL_OUTPUT" "$NUM_TEST"
-python3 npi/add/test_model.py "$MODEL_OUTPUT" "$NUM_TEST"
+echo python3 npi/bubble/test_model.py "$MODEL_OUTPUT" "$NUM_TEST"
+python3 npi/bubble/test_model.py "$MODEL_OUTPUT" "$NUM_TEST"
