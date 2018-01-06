@@ -12,6 +12,6 @@ mkdir -p "$DATA_DIR"
 
 [ "$NEW_MODEL" != "" ] && rm -f "$MODEL_OUTPUT"
 
-echo python3 npi/add/training_model.py "$TRAIN_DATA" "$MODEL_OUTPUT"
-time python3 npi/add/training_model.py "$TRAIN_DATA" "$MODEL_OUTPUT"
+echo python3 npi/bubble/training_model.py "$TRAIN_DATA" "$MODEL_OUTPUT"
+time python3 npi/bubble/training_model.py "$TRAIN_DATA" "$MODEL_OUTPUT"
 
