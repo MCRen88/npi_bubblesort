@@ -4,7 +4,7 @@ Nerual program interpreters of bubblesort
 This project is based on these main resources:
 
 1) DeepMind's ICLR 2016 best award: [Neural Programmer-Interpreters](https://arxiv.org/abs/1511.06279).
-2)The <b>great</b> Addition development of the DeepMind ideas that @mokemokechicken did in his repo: https://github.com/mokemokechicken/keras_npi
+2) The <b>great</b> Addition development of the DeepMind ideas that @mokemokechicken did in his repo: https://github.com/mokemokechicken/keras_npi
 
 requirement
 -----------
@@ -17,6 +17,7 @@ setup
 ```
 pip install -r requirements.txt
 ```
+tips: Keras use theano as backend. If you use tensorflow, it maybe many problems.
 
 create training dataset
 -----------------------
