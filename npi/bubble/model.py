@@ -22,7 +22,7 @@ from npi.core import NPIStep, Program, IntegerArguments, StepOutput, RuntimeSyst
     to_one_hot_array
 from npi.terminal_core import TerminalNPIRunner
 
-__author__ = 'k_morishita'
+__author__ = 'Junling Chen & Xingye Xu'
 
 
 class BubblesortNPIModel(NPIStep):
@@ -65,7 +65,6 @@ class BubblesortNPIModel(NPIStep):
         f_lstm.add(RepeatVector(1))
         f_lstm.add(LSTM(256, return_sequences=False, stateful=True, W_regularizer=l2(0.0000001)))
         f_lstm.add(Activation('relu', name='relu_lstm_2'))
-        # plot(f_lstm, to_file='f_lstm.png', show_shapes=True)
 
         f_end = Sequential(name='f_end')
         f_end.add(f_lstm)
@@ -86,7 +85,6 @@ class BubblesortNPIModel(NPIStep):
             f_arg.add(Dense(IntegerArguments.depth, W_regularizer=l2(0.0001)))
             f_arg.add(Activation('softmax', name='softmax_arg%s' % ai))
             f_args.append(f_arg)
-        # plot(f_arg, to_file='f_arg.png', show_shapes=True)
 
         self.model = Model([input_enc.input, input_arg.input, input_prg.input],
                            [f_end.output, f_prog.output] + [fa.output for fa in f_args],
@@ -123,7 +121,6 @@ class BubblesortNPIModel(NPIStep):
                     sub_steps_list.append(steps_dict)
             return sub_steps_list
 
-        # self.print_weights()
         if not self.weight_loaded:
             self.train_f_enc(filter_question(lambda a: a == 2), epoch=100)
         self.f_enc.trainable = False
