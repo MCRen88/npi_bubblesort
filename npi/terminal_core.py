@@ -5,7 +5,11 @@ import numpy as np
 
 from npi.core import Program, IntegerArguments, NPIStep, StepOutput, StepInput, StepInOut
 
-__author__ = 'k_morishita'
+__raw_author__ = 'k_morishita'
+__author__ = 'Xingye Xu'
+"""
+modified update_main_window_str with judgement about y
+"""
 
 
 class Screen:
@@ -74,8 +78,10 @@ class Terminal:
             self.ignore_error_add_str(self.main_window, y, 0, line)
 
     def update_main_window_attr(self, screen, y, x, attr):
+        ######
         if y >= screen.height:
             y = screen.height - 1
+        ######
         ch = screen[y, x]
         self.ignore_error_add_str(self.main_window, y, x, self.char_map[ch], attr)
 
