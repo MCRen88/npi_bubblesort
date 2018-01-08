@@ -1,6 +1,10 @@
 # npi_bubblesort
 Nerual program interpreters of bubblesort
 
+### Authors(List by name)
+* Junling Chen
+* Xingye Xu
+
 This project is based on these main resources:
 
 1) DeepMind's ICLR 2016 best award: [Neural Programmer-Interpreters](https://arxiv.org/abs/1511.06279).
