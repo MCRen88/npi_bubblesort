@@ -218,6 +218,8 @@ class BubblesortNPIModel(NPIStep):
                         print("Degraded: ep=%2d idx=%3d :%s CorrectCount=%s -> 0" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
                         correct_count[question_key] = 0
                         wrong_new += 1
+                    else:
+                        print("Wrong: ep=%2d idx=%3d :%s CorrectCount=%s -> 0" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
 
                 steps = steps_dict['steps']
                 xs = []
