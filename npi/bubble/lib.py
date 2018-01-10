@@ -260,8 +260,15 @@ def random_int_list(start = 0, stop = 9, length = 5):
 
 def create_questions(start = 0, stop = 9, number = 1000, maxlength = 9):
     questions = []
+    for i in range(10):
+        question = [i];
+        questions.append(dict(raw=question))
+    for i in range(10):
+        for j in range(10):
+            question = [i, j];
+            questions.append(dict(raw=question))
     for _ in range(number):
-        random_length = random.randint(1, maxlength)
+        random_length = random.randint(3, maxlength)
         question = random_int_list(start, stop, random_length)
         questions.append(dict(raw=question))
     return questions
