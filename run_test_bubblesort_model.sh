@@ -2,7 +2,7 @@
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 DATA_DIR=${THIS_DIR}/data
-MODEL_OUTPUT=${1:-${DATA_DIR}/addition.model}
+MODEL_OUTPUT=${1:-${DATA_DIR}/bubblesort.model}
 NUM_TEST=${2:-100}
 
 export PYTHONPATH=${THIS_DIR}
