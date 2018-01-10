@@ -122,15 +122,15 @@ class BubblesortNPIModel(NPIStep):
             return sub_steps_list
 
         if not self.weight_loaded:
-            self.train_f_enc(filter_question(lambda a: a == 2), epoch=100)
+            self.train_f_enc(filter_question(lambda a: a <= 2), epoch=100)
         self.f_enc.trainable = False
 
         self.update_learning_rate(0.0001)
 
-        q_type = "training questions of a==3"
+        q_type = "training questions of a<=3"
         print(q_type)
         pr = 0.8
-        all_ok = self.fit_to_subset(filter_question(lambda a: a == 3), pass_rate=pr)
+        all_ok = self.fit_to_subset(filter_question(lambda a: a <= 3), pass_rate=pr)
         print("%s is pass_rate >= %s: %s" % (q_type, pr, all_ok))
 
         while True:
