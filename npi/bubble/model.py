@@ -132,6 +132,9 @@ class BubblesortNPIModel(NPIStep):
         pr = 0.8
         all_ok = self.fit_to_subset(filter_question(lambda a: a <= 3), pass_rate=pr)
         print("%s is pass_rate >= %s: %s" % (q_type, pr, all_ok))
+        f = open("training.log", "a")
+        f.write("%s is pass_rate >= %s: %s" % (q_type, pr, all_ok))
+        f.close()
 
         while True:
             if self.test_and_learn([10, 100, 1000]):
@@ -149,6 +152,10 @@ class BubblesortNPIModel(NPIStep):
             all_ok = self.fit_to_subset(questions, pass_rate=pr, skip_correct=skip_correct)
             print("%s is pass_rate >= %s: %s" % (q_type, pr, all_ok))
 
+            f = open("training.log", "a")
+            f.write("%s is pass_rate >= %s: %s" % (q_type, pr, all_ok))
+            f.close()
+
     def fit_to_subset(self, steps_list, pass_rate=1.0, skip_correct=False):
         for i in range(10):
             all_ok = self.do_learn(steps_list, 100, pass_rate=pass_rate, skip_correct=skip_correct)
@@ -159,9 +166,15 @@ class BubblesortNPIModel(NPIStep):
     def test_and_learn(self, num_questions):
         for num in num_questions:
             print("test all type of %d questions" % num)
+            f = open("training.log", "a")
+            f.write("test all type of %d questions" % num)
+            f.close()
             cc, wc, wrong_questions = self.test_to_subset(create_questions(number=num))
             acc_rate = cc/(cc+wc)
             print("Accuracy %s(OK=%d, NG=%d)" % (acc_rate, cc, wc))
+            f = open("training.log", "a")
+            f.write("Accuracy %s(OK=%d, NG=%d)" % (acc_rate, cc, wc))
+            f.close()
             if wc > 0:
                 self.fit_to_subset(wrong_questions, pass_rate=1.0, skip_correct=False)
                 return False
@@ -208,6 +221,9 @@ class BubblesortNPIModel(NPIStep):
                         correct_new += 1
                     correct_count[question_key] += 1
                     print("GOOD!: ep=%2d idx=%3d :%s CorrectCount=%s" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
+                    f = open("training.log", "a")
+                    f.write("GOOD!: ep=%2d idx=%3d :%s CorrectCount=%s" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
+                    f.close()
                     ok_rate.append(1)
                     cc = correct_count[question_key]
                     if skip_correct or int(math.sqrt(cc)) ** 2 != cc:
@@ -216,11 +232,16 @@ class BubblesortNPIModel(NPIStep):
                     ok_rate.append(0)
                     if correct_count[question_key] > 0:
                         print("Degraded: ep=%2d idx=%3d :%s CorrectCount=%s -> 0" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
+                        f = open("training.log", "a")
+                        f.write("Degraded: ep=%2d idx=%3d :%s CorrectCount=%s -> 0" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
+                        f.close()
                         correct_count[question_key] = 0
                         wrong_new += 1
                     else:
                         print("Wrong: ep=%2d idx=%3d :%s CorrectCount=%s -> w" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
-
+                        f = open("training.log", "a")
+                        f.write("Wrong: ep=%2d idx=%3d :%s CorrectCount=%s -> w" % (ep, idx, self.dict_to_str(question), correct_count[question_key]))
+                        f.close()
                 steps = steps_dict['steps']
                 xs = []
                 ys = []
@@ -245,6 +266,10 @@ class BubblesortNPIModel(NPIStep):
                 cur_loss = np.average(losses)
                 print("ep=%2d: ok_rate=%.2f%% (+%s -%s): ave loss %s (%s samples)" %
                       (ep, np.average(ok_rate)*100, correct_new, wrong_new, cur_loss, len(steps_list)))
+                f = open("training.log", "a")
+                f.write("ep=%2d: ok_rate=%.2f%% (+%s -%s): ave loss %s (%s samples)" %
+                      (ep, np.average(ok_rate)*100, correct_new, wrong_new, cur_loss, len(steps_list)))
+                f.close()
                 # self.print_weights()
                 if correct_new + wrong_new == 0:
                     no_change_count += 1
