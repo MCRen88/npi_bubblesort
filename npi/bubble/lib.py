@@ -206,7 +206,8 @@ class BubblesortTeacher(NPIStep):
         (pointer1, pointer2, pointer3), (a1, a2, a3) = self.decode_params(env_observation, arguments)
         if pointer2 == NULL:
             return None
-        ret.append((self.pg_set.COMPSWAP, None))
+        if self.compare(pointer1, pointer2) == 1:
+            ret.append((self.pg_set.COMPSWAP, None))
         ret.append((self.pg_set.RSHIFT, None))
         return ret
 
@@ -214,8 +215,7 @@ class BubblesortTeacher(NPIStep):
         ret = []
         p = self.pg_set
         (pointer1, pointer2, pointer3), (a1, a2, a3) = self.decode_params(env_observaiton, arguments)
-        if self.compare(pointer1, pointer2) == 1:
-            ret.append((PG_RETURN, p.SWAP, None))
+        ret.append((PG_RETURN, p.SWAP, None))
         return ret
 
     @staticmethod
