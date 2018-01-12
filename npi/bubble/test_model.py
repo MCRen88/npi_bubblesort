@@ -26,13 +26,17 @@ def main(stdscr, model_path: str, num: int, result_logger: ResultLogger):
     correct_count = wrong_count = 0
     for data in questions:
         Bubblesort_env.reset()
-        run_npi(Bubblesort_env, npi_runner, program_set.BUBBLESORT, data)
+        try:
+            run_npi(Bubblesort_env, npi_runner, program_set.BUBBLESORT, data)
+            if data['correct']:
+                correct_count += 1
+            else:
+                wrong_count += 1
+        except StopIteration:
+            wrong_count += 1
+            pass
         result_logger.write(data)
         terminal.add_log(data)
-        if data['correct']:
-            correct_count += 1
-        else:
-            wrong_count += 1
     return correct_count, wrong_count
 
 
