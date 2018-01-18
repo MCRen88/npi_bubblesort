@@ -21,13 +21,28 @@ def main(stdscr, filename: str, num: int, result_logger: ResultLogger):
     npi_runner = TerminalNPIRunner(terminal, teacher)
     npi_runner.verbose = DEBUG_MODE
     steps_list = []
+    f = open("debug_log.csv", "w")
     for data in questions:
         bubblesort_env.reset()
         q = copy(data)
         run_npi(bubblesort_env, npi_runner, program_set.BUBBLESORT, data)
         steps_list.append({"q": q, "steps": npi_runner.step_list})
+        for step in npi_runner.step_list:
+            f.write("{},".format(step.input.env[0]))
+            f.write("{},".format(step.input.env[1]))
+            f.write("{},".format(step.input.env[2]))
+            f.write("{},".format(step.input.env[3]))
+            f.write("{},".format(step.input.env[4]))
+            f.write("{},".format(step.input.env[5]))
+            f.write("{},".format(step.input.arguments))
+            f.write("{},".format(step.input.program))
+            f.write("{},".format(step.output.program))
+            f.write("{},".format(step.output.r))
+            f.write("{},".format(step.output.arguments))
+            f.write("{}\n".format(q))
         result_logger.write(data)
         terminal.add_log(data)
+    f.close()
 
     if filename:
         with open(filename, 'wb') as f:
