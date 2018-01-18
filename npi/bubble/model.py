@@ -391,4 +391,4 @@ class BubblesortNPIModel(NPIStep):
 
     @staticmethod
     def size_of_env_observation():
-        return 3 * FIELD_ROW * FIELD_DEPTH      # pointers has three
+        return 6 * FIELD_ROW * FIELD_DEPTH      # pointers has three
